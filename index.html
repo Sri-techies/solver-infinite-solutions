@@ -56,7 +56,7 @@
         }
 
         .logo img {
-            max-height: 50px;
+            max-height: 70px;
             width: auto;
         }
 
@@ -111,11 +111,7 @@
 
         /* ==================== HERO SECTION ==================== */
         .hero {
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.85) 0%, rgba(0, 168, 232, 0.75) 100%),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="water" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M0,50 Q25,40 50,50 T100,50" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="2"/><path d="M0,60 Q25,50 50,60 T100,60" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="2"/><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="1200" height="600" fill="url(%23water)"/></svg>');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.85) 0%, rgba(0, 168, 232, 0.75) 100%);
             min-height: 700px;
             display: none;
             align-items: center;
@@ -130,12 +126,13 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 550px;
+            z-index: 1;
+            opacity: 0.3;
         }
 
         .hero.active {
@@ -226,7 +223,7 @@
 
         .cta-button {
             display: inline-block;
-            background: var(--secondary-color);
+            background: linear-gradient(135deg, #003d7a 0%, #0066cc 100%);
             color: white;
             padding: 0.8rem 2rem;
             border-radius: 50px;
@@ -239,9 +236,9 @@
         }
 
         .cta-button:hover {
-            background: #0095cc;
+            background: linear-gradient(135deg, #002650 0%, #0052a3 100%);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 168, 232, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.6);
         }
 
         /* ==================== SECTIONS ==================== */
@@ -1030,7 +1027,7 @@
                 <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
                 <div class="contact-info">
                     <h3>WhatsApp</h3>
-                    <p><a href="https://wa.me/" id="whatsapp-link" target="_blank">Contact us on WhatsApp</a></p>
+                    <p><a href="https://ee/919789828912" id="whatsapp-link" target="_blank">Contact us on WhatsApp</a></p>
                 </div>
             </div>
             <div class="contact-item">
@@ -1129,7 +1126,7 @@
         const whatsappLink = document.getElementById('whatsapp-link');
         if (whatsappLink) {
             // Update the phone number here (currently blank - replace with actual number)
-            whatsappLink.href = 'https://wa.me/'; // Add your WhatsApp number like: https://wa.me/919876543210
+            whatsappLink.href = 'https://wa.me/919789828912'; // Add your WhatsApp number like: https://wa.me/919876543210
         }
         
         // Set home as active on load
