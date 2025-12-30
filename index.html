@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solver Infinite Solutions - Water Treatment & Automation Systems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #00a8e8;
+            --dark-bg: #1a1a1a;
+            --light-bg: #f5f7fa;
+            --text-dark: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* ==================== HEADER & NAVIGATION ==================== */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .logo img {
+            max-height: 50px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            display: block;
+        }
+
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #00a8e8;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.85) 0%, rgba(0, 168, 232, 0.75) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="water" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M0,50 Q25,40 50,50 T100,50" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="2"/><path d="M0,60 Q25,50 50,60 T100,60" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="2"/><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="1200" height="600" fill="url(%23water)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 700px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero.active {
+            display: flex;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            flex: 1;
+            min-width: 150px;
+            max-width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-feature:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-feature-icon i {
+            color: white;
+        }
+
+        .hero-feature-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #0095cc;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 168, 232, 0.4);
+        }
+
+        /* ==================== SECTIONS ==================== */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* ==================== ABOUT SECTION ==================== */
+        #about {
+            background: var(--light-bg);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* ==================== ABOUT HIGHLIGHTS ==================== */
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-left: auto;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #f5f7fa, white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 102, 204, 0.2);
+            border-color: #00a8e8;
+        }
+
+        .highlight-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 70px;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-icon i {
+            color: var(--primary-color);
+        }
+
+        .highlight-card:hover .highlight-icon {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        .highlight-card h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ==================== APPROACH LIFECYCLE ==================== */
+        .approach-lifecycle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .lifecycle-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .lifecycle-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.2);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+        }
+
+        .step-icon i {
+            color: var(--primary-color);
+        }
+
+        .lifecycle-step h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .lifecycle-step p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .step-arrow {
+            font-size: 2rem;
+            color: #00a8e8;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* ==================== FEATURES/WHY SECTION ==================== */
+        #why-us {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ==================== PRODUCTS SECTION ==================== */
+        #products {
+            background: var(--light-bg);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, var(--primary-color), #00a8e8);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ==================== APPLICATION AREAS ==================== */
+        .application-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .app-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 3px solid var(--primary-color);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .app-item::before {
+            content: '✓';
+            color: #00a8e8;
+            font-weight: bold;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .app-item p {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* ==================== VISION SECTION ==================== */
+        #vision {
+            background: linear-gradient(135deg, var(--primary-color), #0052a3);
+            color: white;
+            text-align: center;
+        }
+
+        #vision h2 {
+            color: white;
+        }
+
+        #vision p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ==================== CONTACT SECTION ==================== */
+        #contact {
+            background: var(--light-bg);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #00a8e8;
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 168, 232, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: rgba(0, 168, 232, 0.2);
+            transform: scale(1.1);
+        }
+
+        .contact-icon i {
+            color: #00a8e8;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ==================== RESPONSIVE DESIGN ==================== */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                text-align: center;
+                display: none;
+                gap: 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem 0;
+            }
+
+            .nav-menu a::after {
+                display: none;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(10px, 10px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .hero-features {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-feature {
+                min-width: 100%;
+            }
+
+            .about-highlights {
+                grid-template-columns: 1fr;
+                margin-left: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                min-height: 300px;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                min-height: 400px;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .approach-lifecycle {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .step-arrow {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .features-grid,
+            .products-grid,
+            .application-areas {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                padding: 1.5rem;
+            }
+
+            nav {
+                padding: 0.75rem;
+            }
+
+            .logo img {
+                max-height: 40px;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ==================== UTILITY CLASSES ==================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection style */
+        ::selection {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="assets/logo.jpeg" alt="Solver Infinite Solutions Logo">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showSection('home'); return false;">Home</a></li>
+                <li><a href="#" onclick="showSection('about'); return false;">About</a></li>
+                <li><a href="#" onclick="showSection('why-us'); return false;">Why Us?</a></li>
+                <li><a href="#" onclick="showSection('products'); return false;">Products</a></li>
+                <li><a href="#" onclick="showSection('contact'); return false;">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero active" id="home">
+        <div class="hero-content">
+            <h1>Water Treatment & Automation Solutions</h1>
+            <p>Customized systems built on practical engineering, reliable components, and stable long-term operation</p>
+            <a href="#contact" class="cta-button">Get in Touch</a>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <div class="hero-feature-icon"><i class="fas fa-filter"></i></div>
+                    <div class="hero-feature-text">Advanced Filtration</div>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon"><i class="fas fa-cogs"></i></div>
+                    <div class="hero-feature-text">Smart Automation</div>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="hero-feature-text">Reliable Systems</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="section-subtitle">Practical Solutions for Water Treatment Challenges</div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Mission</h3>
+                <p>Solver Infinite Solutions delivers customized water treatment and automation systems designed to solve real-world challenges with practical engineering and reliable components.</p>
+                <h3>What We Offer</h3>
+                <ul style="margin-left: 1.5rem; color: var(--text-light);">
+                    <li style="margin-bottom: 0.5rem;">✔ RO, UF, STP, ETP, Filter & Softener Systems</li>
+                    <li style="margin-bottom: 0.5rem;">✔ Automation & Control Integration</li>
+                    <li style="margin-bottom: 0.5rem;">✔ Application Support & Consulting</li>
+                </ul>
+            </div>
+            <div class="about-highlights">
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fas fa-water"></i></div>
+                    <h4>Water Systems</h4>
+                    <p>RO, UF, STP & ETP Solutions</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fas fa-microchip"></i></div>
+                    <h4>Automation</h4>
+                    <p>Smart Control Integration</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fas fa-headset"></i></div>
+                    <h4>Expert Support</h4>
+                    <p>Technical & Design Consulting</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 3rem; text-align: center; color: var(--primary-color); margin-bottom: 2rem;">Our Approach</h3>
+        <div class="approach-lifecycle">
+            <div class="lifecycle-step">
+                <div class="step-number">1</div>
+                <div class="step-icon"><i class="fas fa-clipboard-list"></i></div>
+                <h4>Understand Requirements</h4>
+                <p>We deeply analyze your specific needs, challenges, and constraints to create tailored solutions</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="lifecycle-step">
+                <div class="step-number">2</div>
+                <div class="step-icon"><i class="fas fa-drafting-compass"></i></div>
+                <h4>Design the Product</h4>
+                <p>Our engineers create practical designs optimized for reliability, efficiency, and long-term operation</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="lifecycle-step">
+                <div class="step-number">3</div>
+                <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                <h4>Deliver Solution</h4>
+                <p>We implement and support your water treatment system with technical excellence and ongoing assistance</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US SECTION -->
+    <section id="why-us">
+        <h2>Why Choose Us?</h2>
+        <div class="section-subtitle">What sets us apart in water treatment industry</div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Requirement-Driven Solutions</h3>
+                <p>We start by deeply understanding your specific needs and challenges before designing any solution. Your requirements drive our process.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-tools"></i></div>
+                <h3>Practical Engineering</h3>
+                <p>We don't overcomplicate systems. Our engineering approach focuses on making things work reliably and efficiently in real-world conditions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-phone-alt"></i></div>
+                <h3>Technical & Design Support</h3>
+                <p>Beyond installation, we provide ongoing technical support and design consulting to optimize your water treatment systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="section-subtitle">Comprehensive water treatment and automation solutions</div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-droplet" style="color: white; font-size: 3rem;"></i> RO Systems</div>
+                <div class="product-content">
+                    <h3>Reverse Osmosis (RO)</h3>
+                    <p>Advanced purification technology for high-quality drinking and process water</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-microscope" style="color: white; font-size: 3rem;"></i> UF Systems</div>
+                <div class="product-content">
+                    <h3>Ultrafiltration (UF)</h3>
+                    <p>Membrane filtration for suspended solids and microbial removal</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-industry" style="color: white; font-size: 3rem;"></i> STP Systems</div>
+                <div class="product-content">
+                    <h3>Sewage Treatment Plant (STP)</h3>
+                    <p>Complete wastewater treatment solutions for residential and commercial use</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-water" style="color: white; font-size: 3rem;"></i> ETP Systems</div>
+                <div class="product-content">
+                    <h3>Effluent Treatment Plant (ETP)</h3>
+                    <p>Industrial wastewater treatment for manufacturing and processing facilities</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-filter" style="color: white; font-size: 3rem;"></i> Filters</div>
+                <div class="product-content">
+                    <h3>Advanced Filters</h3>
+                    <p>Multi-stage filtration systems for contamination removal</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-cogs" style="color: white; font-size: 3rem;"></i> Automation</div>
+                <div class="product-content">
+                    <h3>Automation & Control</h3>
+                    <p>Smart system integration and process automation solutions</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 3rem; color: var(--primary-color);">Application Areas</h3>
+        <div class="application-areas">
+            <div class="app-item">
+                <p>Commercial Water Treatment Systems</p>
+            </div>
+            <div class="app-item">
+                <p>Industrial Process Water Applications</p>
+            </div>
+            <div class="app-item">
+                <p>OEM Water Treatment Equipment</p>
+            </div>
+            <div class="app-item">
+                <p>Utility & Wastewater Systems</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISION SECTION -->
+    <section id="vision">
+        <h2>Our Vision</h2>
+        <p>To be a trusted solution partner in the water treatment industry through practical, reliable, and value-driven engineering.</p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="section-subtitle">Get in touch with our team</div>
+        <div class="contact-content">
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-info">
+                    <h3>Email</h3>
+                    <p><a href="mailto:solversriram@gmail.com">solversriram@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                <div class="contact-info">
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/" id="whatsapp-link" target="_blank">Contact us on WhatsApp</a></p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-industry"></i></div>
+                <div class="contact-info">
+                    <h3>Company</h3>
+                    <p>Solver Infinite Solutions</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-rocket"></i></div>
+                <div class="contact-info">
+                    <h3>Get Started</h3>
+                    <p>Reach out to discuss your water treatment requirements and discover how we can help.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Solver Infinite Solutions. All rights reserved.</p>
+        <p>Delivering Customized Water Treatment & Automation Solutions</p>
+    </footer>
+
+    <script>
+        // Show/hide sections and highlight menu
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+            
+            // Update menu highlighting
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`.nav-menu a[onclick*="${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Close hamburger menu
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            const isClickInsideNav = event.target.closest('nav');
+            if (!isClickInsideNav && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Update CTA button to show contact section instead of scrolling
+        const ctaButton = document.querySelector('.cta-button');
+        if (ctaButton) {
+            ctaButton.onclick = (e) => {
+                e.preventDefault();
+                showSection('contact');
+            };
+            ctaButton.href = '#';
+        }
+
+        // Set WhatsApp link (update phone number as needed)
+        const whatsappLink = document.getElementById('whatsapp-link');
+        if (whatsappLink) {
+            // Update the phone number here (currently blank - replace with actual number)
+            whatsappLink.href = 'https://wa.me/'; // Add your WhatsApp number like: https://wa.me/919876543210
+        }
+        
+        // Set home as active on load
+        window.addEventListener('load', () => {
+            const homeLink = document.querySelector('.nav-menu a[onclick*="home"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
