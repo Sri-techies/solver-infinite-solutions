@@ -1,5 +1,7 @@
+x`
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,12 +15,17 @@
         }
 
         :root {
-            --primary-color: #0066cc;
-            --secondary-color: #00a8e8;
-            --dark-bg: #1a1a1a;
+            --primary-color: #ff6600;
+            /* Orange */
+            --secondary-color: #cc3300;
+            /* Darker orange */
+            --dark-bg: #000000;
+            /* Black background */
             --light-bg: #f5f7fa;
-            --text-dark: #333;
-            --text-light: #666;
+            --text-dark: #000000;
+            /* Black text */
+            --text-light: #444444;
+            /* Darker gray for secondary text */
             --border-color: #e0e0e0;
         }
 
@@ -111,13 +118,13 @@
 
         /* ==================== HERO SECTION ==================== */
         .hero {
-            background: linear-gradient(135deg, rgba(0, 129, 204, 0.85) 0%, rgba(0, 168, 232, 0.75) 100%);
+            background: linear-gradient(135deg, rgba(243, 241, 239, 0.952) 0%, rgba(248, 247, 245, 0.75) 100%);
             min-height: 700px;
             display: none;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
+            color: #ff6600;
             padding: 2rem;
             position: relative;
             overflow: hidden;
@@ -151,6 +158,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -158,10 +166,9 @@
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             font-weight: 800;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
             letter-spacing: -1px;
             line-height: 1.2;
         }
@@ -172,9 +179,9 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             line-height: 1.7;
             font-weight: 500;
+            color: #000;
         }
 
         .hero-features {
@@ -509,7 +516,7 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
         .product-content {
@@ -547,7 +554,7 @@
 
         .app-item::before {
             content: '✓';
-            color: #00a8e8;
+            color: var(--primary-color);
             font-weight: bold;
             font-size: 1.5rem;
             flex-shrink: 0;
@@ -599,7 +606,7 @@
 
         .contact-icon {
             font-size: 2rem;
-            color: #00a8e8;
+            color: var(--primary-color);
             flex-shrink: 0;
             width: 50px;
             height: 50px;
@@ -616,21 +623,15 @@
             transform: scale(1.1);
         }
 
-        .contact-icon i {
-            color: #00a8e8;
-        }
 
         .contact-info h3 {
             color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
 
-        .contact-info p {
-            color: var(--text-light);
-        }
 
         .contact-info a {
-            color: var(--primary-color);
+            color: black;
             text-decoration: none;
         }
 
@@ -704,11 +705,6 @@
                 min-width: 100%;
             }
 
-            .about-highlights {
-                grid-template-columns: 1fr;
-                margin-left: 0;
-            }
-
             .hero-content h1 {
                 font-size: 2rem;
             }
@@ -717,24 +713,17 @@
                 font-size: 1rem;
             }
 
-            .about-content {
+            .about-highlights {
                 grid-template-columns: 1fr;
-            }
-
-            .about-image {
-                min-height: 300px;
-            }
-
-            section h2 {
-                font-size: 2rem;
+                margin-left: 0;
             }
 
             .hero {
                 min-height: 400px;
             }
 
-            section {
-                padding: 2rem 1rem;
+            section h2 {
+                font-size: 2rem;
             }
 
             nav {
@@ -812,6 +801,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- HEADER & NAVIGATION -->
     <header>
@@ -837,10 +827,15 @@
     <!-- HERO SECTION -->
     <section class="hero active" id="home">
         <div class="hero-content">
-            <h1>Water Treatment & Automation Solutions</h1>
-            <p>Customized systems built on practical engineering, reliable components, and stable long-term operation</p>
+            <h1>Water Treatment Automation Expert</h1>
+            <p>Solver infinite solutions is a technology - focused company backed by extensive field experience in
+                designing and delivering customized automated solutions for Domestic & Commercial & Industrial water
+                treatment applications.</p>
+            <p> We believe every site is different. Our approach starts with understanding actual requirements and
+                operating conditions, followed by thoughtful design and execution to ensure the final system work as
+                intended</p>
             <a href="#contact" class="cta-button">Get in Touch</a>
-            <div class="hero-features">
+            <!-- <div class="hero-features">
                 <div class="hero-feature">
                     <div class="hero-feature-icon"><i class="fas fa-filter"></i></div>
                     <div class="hero-feature-text">Advanced Filtration</div>
@@ -853,23 +848,24 @@
                     <div class="hero-feature-icon"><i class="fas fa-shield-alt"></i></div>
                     <div class="hero-feature-text">Reliable Systems</div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
     <section id="about">
         <h2>About Us</h2>
-        <div class="section-subtitle">Practical Solutions for Water Treatment Challenges</div>
+        <div class="section-subtitle">Practical Solutions for Water Treatment Automation Challenges</div>
         <div class="about-content">
             <div class="about-text">
                 <h3>Our Mission</h3>
-                <p>Solver Infinite Solutions delivers customized water treatment and automation systems designed to solve real-world challenges with practical engineering and reliable components.</p>
+                <p>Solver Infinite Solutions delivers customized water treatment and automation systems designed to
+                    solve real-world challenges with practical engineering and reliable components.</p>
                 <h3>What We Offer</h3>
                 <ul style="margin-left: 1.5rem; color: var(--text-light);">
-                    <li style="margin-bottom: 0.5rem;">✔ RO, UF, STP, ETP, Filter & Softener Systems</li>
-                    <li style="margin-bottom: 0.5rem;">✔ Automation & Control Integration</li>
-                    <li style="margin-bottom: 0.5rem;">✔ Application Support & Consulting</li>
+                    <li style="margin-bottom: 0.5rem;">RO, UF, STP, ETP, Filter, Softener & Iron Removal Systems</li>
+                    <li style="margin-bottom: 0.5rem;">Automation & Control Integration</li>
+                    <li style="margin-bottom: 0.5rem;">Design Support & Consulting</li>
                 </ul>
             </div>
             <div class="about-highlights">
@@ -891,7 +887,8 @@
             </div>
         </div>
 
-        <h3 style="margin-top: 3rem; text-align: center; color: var(--primary-color); margin-bottom: 2rem;">Our Approach</h3>
+        <h3 style="margin-top: 3rem; text-align: center; color: var(--primary-color); margin-bottom: 2rem;">Our Approach
+        </h3>
         <div class="approach-lifecycle">
             <div class="lifecycle-step">
                 <div class="step-number">1</div>
@@ -904,14 +901,16 @@
                 <div class="step-number">2</div>
                 <div class="step-icon"><i class="fas fa-drafting-compass"></i></div>
                 <h4>Design the Product</h4>
-                <p>Our engineers create practical designs optimized for reliability, efficiency, and long-term operation</p>
+                <p>Our engineers create practical designs optimized for reliability, efficiency, and long-term operation
+                </p>
             </div>
             <div class="step-arrow">→</div>
             <div class="lifecycle-step">
                 <div class="step-number">3</div>
                 <div class="step-icon"><i class="fas fa-check-circle"></i></div>
                 <h4>Deliver Solution</h4>
-                <p>We implement and support your water treatment system with technical excellence and ongoing assistance</p>
+                <p>We implement and support your water treatment system with technical excellence and ongoing assistance
+                </p>
             </div>
         </div>
     </section>
@@ -924,17 +923,20 @@
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
                 <h3>Requirement-Driven Solutions</h3>
-                <p>We start by deeply understanding your specific needs and challenges before designing any solution. Your requirements drive our process.</p>
+                <p>We start by deeply understanding your specific needs and challenges before designing any solution.
+                    Your requirements drive our process.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-tools"></i></div>
                 <h3>Practical Engineering</h3>
-                <p>We don't overcomplicate systems. Our engineering approach focuses on making things work reliably and efficiently in real-world conditions.</p>
+                <p>We don't overcomplicate systems. Our engineering approach focuses on making things work reliably and
+                    efficiently in real-world conditions.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-phone-alt"></i></div>
                 <h3>Technical & Design Support</h3>
-                <p>Beyond installation, we provide ongoing technical support and design consulting to optimize your water treatment systems.</p>
+                <p>Beyond installation, we provide ongoing technical support and design consulting to optimize your
+                    water treatment systems.</p>
             </div>
         </div>
     </section>
@@ -945,45 +947,51 @@
         <div class="section-subtitle">Comprehensive water treatment and automation solutions</div>
         <div class="products-grid">
             <div class="product-card">
-                <div class="product-image"><i class="fas fa-droplet" style="color: white; font-size: 3rem;"></i> RO Systems</div>
+                <div class="product-image"><i class="fas fa-droplet" style="color: white; font-size: 3rem;"></i> RO
+                    Systems</div>
                 <div class="product-content">
                     <h3>Reverse Osmosis (RO)</h3>
                     <p>Advanced purification technology for high-quality drinking and process water</p>
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-image"><i class="fas fa-microscope" style="color: white; font-size: 3rem;"></i> UF Systems</div>
+                <div class="product-image"><i class="fas fa-microscope" style="color: white; font-size: 3rem;"></i> UF
+                    Systems</div>
                 <div class="product-content">
                     <h3>Ultrafiltration (UF)</h3>
                     <p>Membrane filtration for suspended solids and microbial removal</p>
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-image"><i class="fas fa-industry" style="color: white; font-size: 3rem;"></i> STP Systems</div>
+                <div class="product-image"><i class="fas fa-industry" style="color: white; font-size: 3rem;"></i> STP
+                    Systems</div>
                 <div class="product-content">
                     <h3>Sewage Treatment Plant (STP)</h3>
                     <p>Complete wastewater treatment solutions for residential and commercial use</p>
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-image"><i class="fas fa-water" style="color: white; font-size: 3rem;"></i> ETP Systems</div>
+                <div class="product-image"><i class="fas fa-water" style="color: white; font-size: 3rem;"></i> ETP
+                    Systems</div>
                 <div class="product-content">
                     <h3>Effluent Treatment Plant (ETP)</h3>
                     <p>Industrial wastewater treatment for manufacturing and processing facilities</p>
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-image"><i class="fas fa-filter" style="color: white; font-size: 3rem;"></i> Filters</div>
+                <div class="product-image"><i class="fas fa-shower" style="color: white; font-size: 3rem;"></i> Filter & Softener
+                </div>
                 <div class="product-content">
                     <h3>Advanced Filters</h3>
                     <p>Multi-stage filtration systems for contamination removal</p>
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-image"><i class="fas fa-cogs" style="color: white; font-size: 3rem;"></i> Automation</div>
+                <div class="product-image"><i class="fas fa-filter" style="color: white; font-size: 3rem;"></i> Iron and Removal
+                </div>
                 <div class="product-content">
-                    <h3>Automation & Control</h3>
-                    <p>Smart system integration and process automation solutions</p>
+                    <h3>Advanced Iron Removal</h3>
+                    <p>Automated high performance iron removal system with low maintenance</p>
                 </div>
             </div>
         </div>
@@ -997,7 +1005,8 @@
                 <p>Industrial Process Water Applications</p>
             </div>
             <div class="app-item">
-                <p>OEM Water Treatment Equipment</p>
+                <p>Apartments & Multi storey building</p>
+                </p>
             </div>
             <div class="app-item">
                 <p>Utility & Wastewater Systems</p>
@@ -1008,7 +1017,8 @@
     <!-- VISION SECTION -->
     <section id="vision">
         <h2>Our Vision</h2>
-        <p>To be a trusted solution partner in the water treatment industry through practical, reliable, and value-driven engineering.</p>
+        <p>To be a trusted solution partner in the water treatment industry through practical, reliable, and
+            value-driven engineering.</p>
     </section>
 
     <!-- CONTACT SECTION -->
@@ -1027,21 +1037,23 @@
                 <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
                 <div class="contact-info">
                     <h3>WhatsApp</h3>
-                    <p><a href="https://ee/919789828912" id="whatsapp-link" target="_blank">Contact us on WhatsApp</a></p>
+                    <p><a href="https://wa.me/919789828912?text=Hello%20Solver%20Sriram,%20I%20have%20a%20new%20enquiry." id="whatsapp-link" target="_blank">
+                        Contact us on WhatsApp</a>
+                    </p>
                 </div>
             </div>
-            <div class="contact-item">
+            <!-- <div class="contact-item">
                 <div class="contact-icon"><i class="fas fa-industry"></i></div>
                 <div class="contact-info">
                     <h3>Company</h3>
                     <p>Solver Infinite Solutions</p>
                 </div>
-            </div>
+            </div> -->
             <div class="contact-item">
-                <div class="contact-icon"><i class="fas fa-rocket"></i></div>
+                <div class="contact-icon"><i class="fas fa-phone"></i></div>
                 <div class="contact-info">
-                    <h3>Get Started</h3>
-                    <p>Reach out to discuss your water treatment requirements and discover how we can help.</p>
+                    <h3>Mobile</h3>
+                    <p>+91-9789828912</p>
                 </div>
             </div>
         </div>
@@ -1061,25 +1073,25 @@
             sections.forEach(section => {
                 section.classList.remove('active');
             });
-            
+
             // Show selected section
             const selectedSection = document.getElementById(sectionId);
             if (selectedSection) {
                 selectedSection.classList.add('active');
                 window.scrollTo(0, 0);
             }
-            
+
             // Update menu highlighting
             const navLinks = document.querySelectorAll('.nav-menu a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
             });
-            
+
             const activeLink = document.querySelector(`.nav-menu a[onclick*="${sectionId}"]`);
             if (activeLink) {
                 activeLink.classList.add('active');
             }
-            
+
             // Close hamburger menu
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
@@ -1126,9 +1138,9 @@
         const whatsappLink = document.getElementById('whatsapp-link');
         if (whatsappLink) {
             // Update the phone number here (currently blank - replace with actual number)
-            whatsappLink.href = 'https://wa.me/919789828912'; // Add your WhatsApp number like: https://wa.me/919876543210
+            whatsappLink.href = 'https://wa.me/919789828912?text=Hello%20Solver%20Sriram,%20I%20have%20a%20new%20enquiry.'; // Add your WhatsApp number like: https://wa.me/919876543210
         }
-        
+
         // Set home as active on load
         window.addEventListener('load', () => {
             const homeLink = document.querySelector('.nav-menu a[onclick*="home"]');
@@ -1138,4 +1150,7 @@
         });
     </script>
 </body>
+
+</html>
+
 </html>
